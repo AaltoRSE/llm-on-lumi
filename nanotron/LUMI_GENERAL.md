@@ -10,7 +10,6 @@ we can use this one for nanotron: /appl/local/containers/easybuild-sif-images/lu
 
 In the nanotron case, we need to install a different version of torch:
 `pip install torch==2.1.2 --index-url https://download.pytorch.org/whl/cu121`
-
 To be distinguished from the torch in the system site package, we can installed it in a non-standard target folder like this:
 `pip install torch==2.1.2 --index-url https://download.pytorch.org/whl/cu121 --target /scratch/$project_id/$USER/nanotron/preview_torch` and then modify the PYTHONPATH in the `
 run_train.sh` script to force the usage of this preview version torch.
