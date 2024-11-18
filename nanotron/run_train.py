@@ -230,8 +230,8 @@ def get_args():
 if __name__ == "__main__":
     args = get_args()
     config_file = args.config_file
-    print(torch.__version__)
-    print(triton.__version__)
+    print("torch version", torch.__version__)
+    print("triton version", triton.__version__)
     # Load trainer and data
     trainer = DistributedTrainer(config_file)
     dataloader = get_dataloader(trainer)
