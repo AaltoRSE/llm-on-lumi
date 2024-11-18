@@ -1,15 +1,17 @@
 
 
 ## Submit sbatch job on LUMI (use nanoton as an example)
+### find a container to use:
 
-### step 1: install extra python libraries:
+
+### step 1: install extra python libraries as explained:
  https://lumi-supercomputer.github.io/LUMI-EasyBuild-docs/p/PyTorch/#extending-the-containers-with-virtual-environment-support
 
 For our case, we need to install a different version of torch:
 `pip install torch==2.1.2 --index-url https://download.pytorch.org/whl/cu121`
 
 to be distinguished from the torch in the system site package, we can installed it in a non-standard target folder like this:
-`pip install torch==2.1.2 --index-url https://download.pytorch.org/whl/cu121`
+`pip install torch==2.1.2 --index-url https://download.pytorch.org/whl/cu121 --target /scratch/$project_id/$USER/nanotron/preview_torch` and modify the pythonpath to force the usage of this preview version torch
 
 ### step 3: submit job
 For our case, three scripts are used:
