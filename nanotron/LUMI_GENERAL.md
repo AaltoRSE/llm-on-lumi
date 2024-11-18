@@ -2,27 +2,14 @@
 
 ## Submit sbatch job on LUMI (use nanoton as an example)
 
-### Step 1: Obtain the Singularity Container with EasyBuild
-
-1. **Modify Installation Paths**:  
-   Begin by setting up the installation paths for EasyBuild. Follow the preparation instructions in the [LUMI EasyBuild documentation](https://docs.lumi-supercomputer.eu/software/installing/easybuild/#preparation-set-the-location-for-your-easybuild-installation) to specify where to save the container and module files.
-
-2. **Load Necessary Modules**:  
-   Load the required modules for EasyBuild and Singularity:
-   ```bash
-   module load LUMI partition/container EasyBuild-user
-   ```
-3. **Install the container**:
-    ```bash
-    eb PyTorch-2.2.0-rocm-5.6.1-python-3.10-singularity-20240315.eb
-    ```
-Additional container options with different PyTorch, ROCm, or Python versions can be found in the:
-https://lumi-supercomputer.github.io/LUMI-EasyBuild-docs/p/PyTorch/#singularity-containers-with-modules-for-binding-and-extras
-
-### step 2: install extra python libraries:
+### step 1: install extra python libraries:
  https://lumi-supercomputer.github.io/LUMI-EasyBuild-docs/p/PyTorch/#extending-the-containers-with-virtual-environment-support
 
-For our case, extra libraries are listed in extra_requirements.txt (some might be omitted)
+For our case, we need to install a different version of torch:
+`pip install torch==2.1.2 --index-url https://download.pytorch.org/whl/cu121`
+
+to be distinguished from the torch in the system site package, we can installed it in a non-standard target folder like this:
+`pip install torch==2.1.2 --index-url https://download.pytorch.org/whl/cu121`
 
 ### step 3: submit job
 For our case, three scripts are used:
