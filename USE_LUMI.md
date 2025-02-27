@@ -1,4 +1,4 @@
-# PyTorch on LUMI with Singularity Containers
+# PyTorch lightning on LUMI with Singularity Containers
 
 ## Step 1: Obtain the Singularity Container with EasyBuild
 
