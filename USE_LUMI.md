@@ -1,4 +1,4 @@
-# PyTorch lightning on LUMI with Singularity Containers
+# Start to use LUMI for Machine Learning tasks with Singularity Containers
 
 ## Step 1: Obtain the Singularity Container with EasyBuild
 
@@ -20,30 +20,15 @@ https://lumi-supercomputer.github.io/LUMI-EasyBuild-docs/p/PyTorch/#singularity-
 ## step 2: install extra python libraries:
  https://lumi-supercomputer.github.io/LUMI-EasyBuild-docs/p/PyTorch/#extending-the-containers-with-virtual-environment-support
 
-For our case, extra libraries are listed in extra_requirements.txt (some might be omitted)
+Extra libraries can be listed in a requirements.txt file.(See examples)
 
 ## step 3: submit job
-For our case, three scripts are used:
-- .slurm script to submit job (run_imagenet_training.slurm)
-- .sh script to set up environment (train_imagenet.sh)
-- .py script, the entrypoint for model training (pl_eval_navit.py)
+In the examples, three scripts are used:
+- .slurm script to submit job (**.slurm)
+- .sh script to set up environment (**.sh)
+- .py script, the entrypoint for model training (**.py)
 
-## Main modification of the python script:
-PyTorch Lightning typically manages the distributed environment setup automatically. However, on LUMI, it is necessary to include the following line in your script for proper initialization (not sure if it is due to the slurm config):
-```python
- torch.distributed.init_process_group(backend="nccl")
-```
-
-## Some other modifications can be done
-Create a helper function to print only on rank 0 to avoid redundancy. 
-```python
-def print_rank0(*msg):
-    if rank != 0:
-        return
-    print(*msg)
-```
 ## Sharding datasets on LUMI
-https://github.com/YuTian8328/dataset-sharding
 
 On LUMI (in general any cluster based distributed file system) transfering big number of small files to compute nodes is very slow.
 To optimize performance, it’s preferable to use larger files, which reduces transfer overhead and improve read speeds. However, working with a single large file also has its challenges. In such cases, sharding the dataset into larger chunks can provide a balance.
@@ -55,4 +40,4 @@ Sharding a dataset, which involves splitting a massive dataset into large subset
 
 ## Webdataset
 webdataset offers a convenient way to load large and sharded datasets into pytorch, it implements the iterable dataset interface of pytorch, and can thus be used like any other pytorch dataset.
-A simple example can be found in the dataset-sharding repo.
+A simple example can be found in the dataset-sharding repo: https://github.com/YuTian8328/dataset-sharding
