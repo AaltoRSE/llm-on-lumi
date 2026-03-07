@@ -1,6 +1,6 @@
 
 
-## Submit sbatch job on LUMI (use nanoton as an example)
+## This instruction is for Nanotron only and is not generally applicable.
 ### step 1: find a container to use:
 we can use this one for nanotron: /appl/local/containers/easybuild-sif-images/lumi-pytorch-rocm-6.2.0-python-3.10-pytorch-v2.3.0-dockerhash-187f41102477.sif
 
