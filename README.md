@@ -26,7 +26,7 @@ Extra libraries can be listed in a requirements.txt file.(See examples)
 In the examples, three scripts are used:
 - .slurm script to submit job (**.slurm)
 - .sh script to set up environment (**.sh)
-- .py script, the entrypoint for model training (**.py)
+- .py script, the entrypoint for model training/inference (**.py)
 
 ## Sharding datasets on LUMI
 
